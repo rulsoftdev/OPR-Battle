@@ -1,22 +1,23 @@
 package dev.rulsoft.oprbattles.ui.screen.club
 
-import android.util.Log
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.rulsoft.oprbattles.data.Club
 import dev.rulsoft.oprbattles.repository.ClubRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 private const val TAG = "ClubListViewModel"
 
-class ClubListViewModel: ViewModel() {
+@HiltViewModel
+class ClubListViewModel
+@Inject constructor(
+    private val repository: ClubRepository
+): ViewModel() {
 
-    private val repository = ClubRepository()
 
     private val _state = MutableStateFlow(UiState())
     val state get() = _state.asStateFlow()

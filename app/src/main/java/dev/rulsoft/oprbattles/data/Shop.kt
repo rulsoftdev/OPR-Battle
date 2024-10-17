@@ -11,7 +11,5 @@ data class Shop(
     val address: String = "",
     val openingHour: String = "",
     val manager: String = "",
-    val hasEventSpace: Boolean = false,
-    val createdDate: Date? = null,
-    val lastAccess: Date? = null
+    val hasEventSpace: Boolean = false
 )
