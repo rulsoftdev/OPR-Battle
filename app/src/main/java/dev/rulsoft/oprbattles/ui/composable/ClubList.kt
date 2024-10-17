@@ -7,6 +7,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -19,7 +21,7 @@ fun ClubList(
     clubListViewModel: ClubListViewModel = viewModel(),
     onClubClick: (Club) -> Unit
 ) {
-    val state = clubListViewModel.state
+    val state by clubListViewModel.state.collectAsState()
 
     LaunchedEffect(key1= Unit) { // Llama a onUiReady() una sola vez
         clubListViewModel.onUiReady()

@@ -17,7 +17,8 @@ import dev.rulsoft.oprbattles.ui.screen.club.ClubListScreen
 private const val TAG = "Navigation"
 
 
-@Composable fun Navigation(navController: NavHostController, snackbarHostState: SnackbarHostState) {
+@Composable
+fun Navigation(navController: NavHostController, snackbarHostState: SnackbarHostState) {
 
     val navGraph =  remember(navController){
         navController.createGraph(startDestination = NavItem.ClubList.route){

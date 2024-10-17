@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dev.rulsoft.oprbattles.data.Club
 import dev.rulsoft.oprbattles.repository.ClubRepository
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 private const val TAG = "ClubListViewModel"
@@ -16,15 +18,14 @@ class ClubListViewModel: ViewModel() {
 
     private val repository = ClubRepository()
 
-    var state by mutableStateOf(UiState())
-        private set
+    private val _state = MutableStateFlow(UiState())
+    val state get() = _state.asStateFlow()
 
     fun onUiReady() {
         viewModelScope.launch {
-            state = UiState(loading = true)
+            _state.value = UiState(loading = true)
             val clubs = repository.fetchClubs()
-            Log.d(TAG, "$clubs")
-            state = UiState(loading = false, clubs = clubs)
+            _state.value = UiState(loading = false, clubs = clubs)
         }
 
     }
