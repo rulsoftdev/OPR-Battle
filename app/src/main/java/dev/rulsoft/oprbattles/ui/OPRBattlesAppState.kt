@@ -11,7 +11,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import dev.rulsoft.oprbattles.R
+import dev.rulsoft.oprbattles.navigations.Feature
+import dev.rulsoft.oprbattles.navigations.NavCommand
 import dev.rulsoft.oprbattles.navigations.NavItem
+import dev.rulsoft.oprbattles.navigations.navigatePoppingUpToStartDestination
 import kotlinx.coroutines.CoroutineScope
 
 private const val TAG = "OPRBattlesAppState"
@@ -33,10 +36,16 @@ class OPRBattlesAppState(
     val coroutineScope: CoroutineScope
 ){
 
+    companion object {
+        val BOTTOM_NAV_OPTIONS = listOf(NavItem.CLUBS, NavItem.SHOP)
+    }
+
     val title_screen : Int  //TODO: Ocasional hay que pensar como gestionar los titulos de las bars en funcion de currentRoute
         @Composable get() = when(currentRoute) {
-            NavItem.ClubList.route -> NavItem.ClubList.title
-            NavItem.ClubDetail.route -> NavItem.ClubDetail.title
+            NavCommand.ContentType(Feature.CLUBS).route -> NavItem.CLUBS.title
+            NavCommand.ContentTypeDetail(Feature.CLUBS).route -> NavItem.CLUBS.title_detail
+            NavCommand.ContentType(Feature.SHOPS).route -> NavItem.SHOP.title
+            NavCommand.ContentTypeDetail(Feature.SHOPS).route -> NavItem.SHOP.title_detail
             else -> R.string.app_title
         }
 
@@ -44,12 +53,17 @@ class OPRBattlesAppState(
         @Composable get() = navController.currentBackStackEntryAsState().value?.destination?.route
             ?: ""
 
-    //TODO: Temporal hasta que implemente la navegación con grafos ya que esto no es escalable
     val showUpNavigation: Boolean
-        @Composable get() = currentRoute.isNotEmpty() && currentRoute != NavItem.ClubList.route
+        @Composable get() = currentRoute !in NavItem.entries.map { it.navCommand.route }
+
+    val showBottomNavigation: Boolean
+        @Composable get() = BOTTOM_NAV_OPTIONS.any { currentRoute.contains("${it.navCommand.feature.route}/home") }
 
     fun onBackClick() {
         navController.popBackStack()
     }
 
+    fun onNavItemClick(navItem: NavItem) {
+        navController.navigatePoppingUpToStartDestination(navItem.navCommand.route)
+    }
 }

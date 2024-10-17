@@ -12,12 +12,15 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import dev.rulsoft.oprbattles.R
 import dev.rulsoft.oprbattles.navigations.Navigation
 import dev.rulsoft.oprbattles.navigations.composable.AppBarIcon
+import dev.rulsoft.oprbattles.navigations.composable.AppBottomNavigation
 import dev.rulsoft.oprbattles.ui.theme.OPRBattlesTheme
 
 private const val TAG =  "OPRBattlesApp"
@@ -25,6 +28,8 @@ private const val TAG =  "OPRBattlesApp"
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun OPRBattlesApp(appState: OPRBattlesAppState = rememberOPRBattlesAppState()){
+
+    val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
 
     OPRBattlesScreen {
         Scaffold(
@@ -45,9 +50,19 @@ fun OPRBattlesApp(appState: OPRBattlesAppState = rememberOPRBattlesAppState()){
                                 }
                             )
                         }
-                    }
+                    },
+                    scrollBehavior = if (appState.showUpNavigation) scrollBehavior else null
                 )
-            }
+            },
+            bottomBar = {
+                if (appState.showBottomNavigation) {
+                    AppBottomNavigation(
+                        bottomNavOptions = OPRBattlesAppState.BOTTOM_NAV_OPTIONS,
+                        currentRoute = appState.currentRoute,
+                        onNavItemClick = { appState.onNavItemClick(it) })
+                }
+            },
+            modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection)
         ){ padding ->
             Box(modifier = Modifier.padding(padding)) {
                 Navigation(appState.navController, appState.snackbarHostState)

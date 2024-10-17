@@ -3,4 +3,7 @@
     <string name="bottom_back">Volver al listado</string>
     <string name="app_title">OPR Battles</string>
     <string name="title_club_detail">Ficha del club</string>
+    <string name="title_shop_detail">Ficha de la tienda</string>
+    <string name="title_shops">Tiendas</string>
+    <string name="title_clubs">Clubs</string>
 </resources>

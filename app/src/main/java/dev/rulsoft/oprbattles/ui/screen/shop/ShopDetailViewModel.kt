@@ -1,24 +1,27 @@
-package dev.rulsoft.oprbattles.ui.screen.club
+package dev.rulsoft.oprbattles.ui.screen.shop
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.rulsoft.oprbattles.data.Club
+import dev.rulsoft.oprbattles.data.Shop
 import dev.rulsoft.oprbattles.navigations.NavArg
 import dev.rulsoft.oprbattles.repository.ClubRepository
+import dev.rulsoft.oprbattles.repository.ShopRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ClubDetailViewModel
+class ShopDetailViewModel
 @Inject
 constructor(
-    private val repository: ClubRepository,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
+
+    private var repository =  ShopRepository()
 
     private val uid = savedStateHandle.get<String>(NavArg.UId.key) ?: ""
 
@@ -28,12 +31,12 @@ constructor(
     init {
         viewModelScope.launch {
             _state.value = UiState(loading = true)
-            _state.value = UiState(loading = false, club = repository.fetchClubById(uid))
+            _state.value = UiState(loading = false, shop = repository.fetchShopById(uid))
         }
     }
 
     data class UiState(
         val loading: Boolean = false,
-        val club: Club? = null
+        val shop: Shop? = null
     )
 }

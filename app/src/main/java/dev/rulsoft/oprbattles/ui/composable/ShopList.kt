@@ -11,21 +11,20 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
-import dev.rulsoft.oprbattles.data.Club
-import dev.rulsoft.oprbattles.ui.screen.club.ClubListViewModel
+import dev.rulsoft.oprbattles.data.Shop
+import dev.rulsoft.oprbattles.ui.screen.shop.ShopListViewModel
 
 @Composable
-fun ClubList(
+fun ShopList(
     modifier: Modifier = Modifier,
-    clubListViewModel: ClubListViewModel = hiltViewModel(),
-    onClubClick: (Club) -> Unit
+    shopListViewModel: ShopListViewModel = viewModel(),
+    onShopClick: (Shop) -> Unit
 ) {
-    val state by clubListViewModel.state.collectAsState()
+    val state by shopListViewModel.state.collectAsState()
 
     LaunchedEffect(key1= Unit) { // Llama a onUiReady() una sola vez
-        clubListViewModel.onUiReady()
+        shopListViewModel.onUiReady()
     }
 
     if(state.loading) {
@@ -38,10 +37,10 @@ fun ClubList(
         }
     }
     LazyColumn(modifier = modifier) {
-        items(state.clubs) { club ->
-            ClubCard(
-                club = club,
-                onClick = { onClubClick(club) },
+        items(state.shops) { shop ->
+            ShopItem(
+                shop = shop,
+                onClick = { onShopClick(shop) },
                 modifier = Modifier
             )
         }

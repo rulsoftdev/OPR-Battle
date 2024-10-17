@@ -4,4 +4,6 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android) apply false
     // Add the dependency for the Google services Gradle plugin
     alias(libs.plugins.google.services) apply false
+    alias(libs.plugins.hilt) apply false
+    alias(libs.plugins.kotlin.ksp) apply false
 }
