@@ -1,5 +1,6 @@
 package dev.rulsoft.oprbattles.ui.screen.shop
 
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,6 +12,7 @@ import dev.rulsoft.oprbattles.repository.ClubRepository
 import dev.rulsoft.oprbattles.repository.ShopRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -35,8 +37,18 @@ constructor(
         }
     }
 
+    fun onFavoriteClick() {
+        _state.update { it.copy(message = "Favorite Clicked") }
+        Log.d("ShopDetailViewModel", _state.value.toString())
+    }
+
+    fun onMessageShown() {
+        _state.update { it.copy(message = null) }
+    }
+
     data class UiState(
         val loading: Boolean = false,
-        val shop: Shop? = null
+        val shop: Shop? = null,
+        val message: String? = null
     )
 }

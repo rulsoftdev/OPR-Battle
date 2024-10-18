@@ -7,6 +7,7 @@ import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -35,6 +36,12 @@ class OPRBattlesAppState(
     val navController: NavHostController,
     val coroutineScope: CoroutineScope
 ){
+    data class FabOption(
+        val route: String,
+        val icon: ImageVector,
+        val label: Int,
+        val action: (Any?) -> Unit
+    )
 
     companion object {
         val BOTTOM_NAV_OPTIONS = listOf(NavItem.CLUBS, NavItem.SHOP)
@@ -57,7 +64,9 @@ class OPRBattlesAppState(
         @Composable get() = currentRoute !in NavItem.entries.map { it.navCommand.route }
 
     val showBottomNavigation: Boolean
-        @Composable get() = BOTTOM_NAV_OPTIONS.any { currentRoute.contains("${it.navCommand.feature.route}/home") }
+        @Composable get() = BOTTOM_NAV_OPTIONS.any {
+            currentRoute.contains("${it.navCommand.feature.route}/home")
+        }
 
     fun onBackClick() {
         navController.popBackStack()

@@ -69,7 +69,10 @@ fun OPRBattlesApp(appState: OPRBattlesAppState = rememberOPRBattlesAppState()){
             }
         }
     }
+
 }
+
+
 
 @Composable
 fun OPRBattlesScreen(content: @Composable () -> Unit) {

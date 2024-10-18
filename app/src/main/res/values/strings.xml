@@ -6,4 +6,5 @@
     <string name="title_shop_detail">Ficha de la tienda</string>
     <string name="title_shops">Tiendas</string>
     <string name="title_clubs">Clubs</string>
+    <string name="fab_shop_favorite">Marcar y desmarcar como favorito</string>
 </resources>

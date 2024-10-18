@@ -1,10 +1,27 @@
 package dev.rulsoft.oprbattles.ui.screen.shop
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import dev.rulsoft.oprbattles.R
 import dev.rulsoft.oprbattles.ui.composable.ClubDetail
 import dev.rulsoft.oprbattles.ui.composable.common.topBars.ShopDetail
 
@@ -13,12 +30,40 @@ fun ShopDetailScreen(
     viewModel: ShopDetailViewModel = hiltViewModel()
 ){
     val state by viewModel.state.collectAsState()
-    if (state.loading) {
-        CircularProgressIndicator()
+    val snackbarHostState = remember { SnackbarHostState() }
+
+    LaunchedEffect(state.message) {
+        state.message?.let {
+            snackbarHostState.currentSnackbarData?.dismiss()
+            snackbarHostState.showSnackbar(it)
+            viewModel.onMessageShown()
+        }
     }
-    if (state.shop != null) {
-        ShopDetail(shop = state.shop!!)
+
+    Scaffold(
+        snackbarHost = { SnackbarHost(snackbarHostState) },
+        floatingActionButton = {
+            FloatingActionButton(onClick = { viewModel.onFavoriteClick() }) {
+                Icon(
+                    imageVector = Icons.Filled.FavoriteBorder,
+                    contentDescription = stringResource(id = R.string.fab_shop_favorite)
+                )
+            }
+        },
+        contentWindowInsets = WindowInsets(0.dp)
+    ) { innerPadding ->
+        Box(modifier = Modifier
+            .padding(innerPadding)
+        ){
+            if (state.loading) {
+                CircularProgressIndicator()
+            }
+            if (state.shop != null) {
+                ShopDetail(shop = state.shop!!)
+            }
+        }
     }
+
 }
 
 
