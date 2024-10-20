@@ -12,10 +12,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import dev.rulsoft.oprbattles.R
-import dev.rulsoft.oprbattles.navigations.Feature
-import dev.rulsoft.oprbattles.navigations.NavCommand
-import dev.rulsoft.oprbattles.navigations.NavItem
-import dev.rulsoft.oprbattles.navigations.navigatePoppingUpToStartDestination
+import dev.rulsoft.oprbattles.core.navigation.Feature
+import dev.rulsoft.oprbattles.core.navigation.NavCommand
+import dev.rulsoft.oprbattles.core.navigation.NavItem
+import dev.rulsoft.oprbattles.core.navigation.navigatePoppingUpToStartDestination
 import kotlinx.coroutines.CoroutineScope
 
 private const val TAG = "OPRBattlesAppState"

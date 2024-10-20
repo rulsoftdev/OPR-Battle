@@ -1,4 +1,4 @@
-package dev.rulsoft.oprbattles.navigations.composable
+package dev.rulsoft.oprbattles.core.navigation.composable
 
 import androidx.annotation.StringRes
 import androidx.compose.material3.Icon

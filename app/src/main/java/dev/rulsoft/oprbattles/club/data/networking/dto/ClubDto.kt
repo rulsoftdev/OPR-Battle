@@ -1,8 +1,9 @@
-package dev.rulsoft.oprbattles.data
+package dev.rulsoft.oprbattles.club.data.networking.dto
 
-import java.util.Date
+import kotlinx.serialization.Serializable
 
-data class Club(
+@Serializable
+data class ClubDto(
     val uid: String = "",
     val displayName: String = "",
     val descripcion: String = "",
@@ -11,7 +12,5 @@ data class Club(
     val photoURL: String = "",
     val phone: String = "",
     val address: String = "",
-    val createdDate: Date? = null,
-    val lastAccess: Date? = null,
     val members: List<String> = emptyList()
 )

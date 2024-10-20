@@ -1,4 +1,4 @@
-package dev.rulsoft.oprbattles.utils
+package dev.rulsoft.oprbattles.core.presentation.util
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.AnnotatedString

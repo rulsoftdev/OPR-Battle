@@ -1,12 +1,12 @@
-package dev.rulsoft.oprbattles.navigations
+package dev.rulsoft.oprbattles.core.navigation
 
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.navigation.*
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import dev.rulsoft.oprbattles.ui.screen.club.ClubDetailScreen
-import dev.rulsoft.oprbattles.ui.screen.club.ClubListScreen
+import dev.rulsoft.oprbattles.club.presentation.ClubDetailScreen
+import dev.rulsoft.oprbattles.club.presentation.ClubListScreen
 import dev.rulsoft.oprbattles.ui.screen.shop.ShopDetailScreen
 import dev.rulsoft.oprbattles.ui.screen.shop.ShopListScreen
 

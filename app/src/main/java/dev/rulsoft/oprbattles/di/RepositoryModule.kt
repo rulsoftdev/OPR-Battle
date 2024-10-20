@@ -5,7 +5,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import dev.rulsoft.oprbattles.repository.ClubRepository
+import dev.rulsoft.oprbattles.club.data.networking.ClubDataSource
 import javax.inject.Singleton
 
 @Module
@@ -22,8 +22,8 @@ object RepositoryModule {
     @Singleton
     fun provideClubsRepository(
         db: FirebaseFirestore
-    ) : ClubRepository {
-        return ClubRepository(db)
+    ) : ClubDataSource {
+        return ClubDataSource(db)
     }
 
 }

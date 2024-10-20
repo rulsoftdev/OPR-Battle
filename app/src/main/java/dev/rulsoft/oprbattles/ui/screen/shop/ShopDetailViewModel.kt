@@ -5,11 +5,9 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.rulsoft.oprbattles.data.Club
-import dev.rulsoft.oprbattles.data.Shop
-import dev.rulsoft.oprbattles.navigations.NavArg
-import dev.rulsoft.oprbattles.repository.ClubRepository
-import dev.rulsoft.oprbattles.repository.ShopRepository
+import dev.rulsoft.oprbattles.data.model.Shop
+import dev.rulsoft.oprbattles.core.navigation.NavArg
+import dev.rulsoft.oprbattles.domain.ShopDataRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -23,7 +21,7 @@ constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private var repository =  ShopRepository()
+    private var repository =  ShopDataRepository()
 
     private val uid = savedStateHandle.get<String>(NavArg.UId.key) ?: ""
 

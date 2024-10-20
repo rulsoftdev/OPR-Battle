@@ -1,11 +1,11 @@
-package dev.rulsoft.oprbattles.navigations.composable
+package dev.rulsoft.oprbattles.core.navigation.composable
 
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import dev.rulsoft.oprbattles.navigations.NavItem
+import dev.rulsoft.oprbattles.core.navigation.NavItem
 
 @Composable
 fun AppBottomNavigation(

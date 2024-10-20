@@ -2,15 +2,15 @@ package dev.rulsoft.oprbattles.ui.screen.shop
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dev.rulsoft.oprbattles.data.Shop
-import dev.rulsoft.oprbattles.repository.ShopRepository
+import dev.rulsoft.oprbattles.data.model.Shop
+import dev.rulsoft.oprbattles.domain.ShopDataRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class ShopListViewModel: ViewModel() {
 
-    private val repository = ShopRepository()
+    private val repository = ShopDataRepository()
 
     private val _state = MutableStateFlow(UiState())
     val state get() = _state.asStateFlow()

@@ -1,4 +1,4 @@
-package dev.rulsoft.oprbattles.data
+package dev.rulsoft.oprbattles.data.model
 
 import java.util.Date
 

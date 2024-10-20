@@ -1,12 +1,9 @@
-package dev.rulsoft.oprbattles.ui.screen.club
+package dev.rulsoft.oprbattles.club.presentation
 
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.hilt.navigation.compose.hiltViewModel
 import dev.rulsoft.oprbattles.ui.composable.ClubDetail
 

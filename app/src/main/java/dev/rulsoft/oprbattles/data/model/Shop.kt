@@ -1,6 +1,4 @@
-package dev.rulsoft.oprbattles.data
-
-import java.util.Date
+package dev.rulsoft.oprbattles.data.model
 
 data class Shop(
     val uid: String = "",

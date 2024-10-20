@@ -1,11 +1,11 @@
-package dev.rulsoft.oprbattles.ui.screen.club
+package dev.rulsoft.oprbattles.club.presentation
 
 import androidx.compose.runtime.Composable
-import dev.rulsoft.oprbattles.data.Club
+import dev.rulsoft.oprbattles.club.presentation.models.ClubUi
 import dev.rulsoft.oprbattles.ui.composable.ClubList
 
 @Composable
-fun ClubListScreen(onClubClick: (Club) -> Unit) {
+fun ClubListScreen(onClubClick: (ClubUi) -> Unit) {
     ClubList(
         onClubClick = onClubClick
     )

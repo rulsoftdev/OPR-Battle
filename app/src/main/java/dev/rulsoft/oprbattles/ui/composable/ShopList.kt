@@ -12,7 +12,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
-import dev.rulsoft.oprbattles.data.Shop
+import dev.rulsoft.oprbattles.data.model.Shop
 import dev.rulsoft.oprbattles.ui.screen.shop.ShopListViewModel
 
 @Composable

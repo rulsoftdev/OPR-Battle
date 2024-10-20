@@ -18,9 +18,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import dev.rulsoft.oprbattles.R
-import dev.rulsoft.oprbattles.navigations.Navigation
-import dev.rulsoft.oprbattles.navigations.composable.AppBarIcon
-import dev.rulsoft.oprbattles.navigations.composable.AppBottomNavigation
+import dev.rulsoft.oprbattles.core.navigation.Navigation
+import dev.rulsoft.oprbattles.core.navigation.composable.AppBarIcon
+import dev.rulsoft.oprbattles.core.navigation.composable.AppBottomNavigation
 import dev.rulsoft.oprbattles.ui.theme.OPRBattlesTheme
 
 private const val TAG =  "OPRBattlesApp"

@@ -1,18 +1,15 @@
-package dev.rulsoft.oprbattles.ui.screen.club
+package dev.rulsoft.oprbattles.club.presentation
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.rulsoft.oprbattles.data.Club
-import dev.rulsoft.oprbattles.navigations.NavArg
-import dev.rulsoft.oprbattles.repository.ClubRepository
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.Flow
+import dev.rulsoft.oprbattles.core.navigation.NavArg
+import dev.rulsoft.oprbattles.club.data.networking.ClubDataSource
+import dev.rulsoft.oprbattles.club.presentation.models.ClubUi
+import dev.rulsoft.oprbattles.club.presentation.models.toClubUi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,7 +17,7 @@ import javax.inject.Inject
 class ClubDetailViewModel
 @Inject
 constructor(
-    private val repository: ClubRepository,
+    private val repository: ClubDataSource,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
@@ -32,12 +29,17 @@ constructor(
     init {
         viewModelScope.launch {
             _state.value = UiState(loading = true)
-            _state.value = UiState(loading = false, club = repository.fetchClubById(uid))
+            val club = repository.fetchClubById(uid)
+            if (club != null) {
+                _state.value = UiState(loading = false, club = club.toClubUi())
+            } else {
+                _state.value = UiState(loading = false)
+            }
         }
     }
 
     data class UiState(
         val loading: Boolean = false,
-        val club: Club? = null
+        val club: ClubUi? = null
     )
 }
