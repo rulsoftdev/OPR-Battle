@@ -5,48 +5,29 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.navigation.NavType
-import androidx.navigation.navArgument
 import dev.rulsoft.oprbattles.R
+import kotlinx.serialization.Serializable
+
+@Serializable
+data object ClubsNav
+@Serializable
+data class ClubNav(val uid: String)
+@Serializable
+data object ShopsNav
+@Serializable
+data class ShopNav(val uid: String)
+
+data class NavCommand<T: Any>(
+    val route: T,
+    @StringRes val title: Int
+)
 
 enum class NavItem(
-    val navCommand: NavCommand,
-    val icon: ImageVector,
-    @StringRes val title: Int,
-    @StringRes val title_detail: Int
-){
-    CLUBS(NavCommand.ContentType(Feature.CLUBS), Icons.Default.Home, R.string.title_clubs, R.string.title_club_detail),
-    SHOP(NavCommand.ContentType(Feature.SHOPS), Icons.Default.ShoppingCart, R.string.title_shops, R.string.title_shop_detail)
-}
-
-sealed class NavCommand(
-    internal val feature: Feature,
-    internal val subRoute: String = "home",
-    private val navArgs: List<NavArg> = emptyList()
-){
-    class ContentType(feature: Feature) : NavCommand(feature)
-
-    class ContentTypeDetail(feature: Feature) : NavCommand(
-        feature, "detail",
-        listOf(NavArg.UId))
-    {
-        fun createRoute(itemId: String) = "${feature.route}/$subRoute/$itemId"
-    }
-
-
-    val route = run {
-        val argValues = navArgs.map { "{${it.key}}" }
-        listOf(feature.route, subRoute)
-            .plus(argValues)
-            .joinToString("/")
-    }
-
-    val args = navArgs.map {
-        navArgument(it.key) { type = it.navType }
-    }
-
-}
-
-enum class NavArg (val key: String, val navType: NavType<*>){
-    UId("uid", NavType.StringType),
+    val navCommand: NavCommand<Any>,
+    val icon: ImageVector? = null
+) {
+    CLUBS(NavCommand(ClubsNav, R.string.title_clubs), Icons.Default.Home),
+    CLUB(NavCommand(ClubNav(""), R.string.title_club_detail)),
+    SHOPS(NavCommand(ShopsNav, R.string.title_shops), Icons.Default.ShoppingCart),
+    SHOP(NavCommand(ShopNav(""), R.string.title_shop_detail))
 }

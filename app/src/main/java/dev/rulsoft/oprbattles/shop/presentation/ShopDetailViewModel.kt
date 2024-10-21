@@ -1,13 +1,14 @@
-package dev.rulsoft.oprbattles.ui.screen.shop
+package dev.rulsoft.oprbattles.shop.presentation
 
 import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.toRoute
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.rulsoft.oprbattles.data.model.Shop
-import dev.rulsoft.oprbattles.core.navigation.NavArg
-import dev.rulsoft.oprbattles.domain.ShopDataRepository
+import dev.rulsoft.oprbattles.core.navigation.ShopNav
+import dev.rulsoft.oprbattles.shop.data.networking.ShopDataSource
+import dev.rulsoft.oprbattles.shop.presentation.models.toShopUi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -21,17 +22,23 @@ constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private var repository =  ShopDataRepository()
+    private var repository =  ShopDataSource()
 
-    private val uid = savedStateHandle.get<String>(NavArg.UId.key) ?: ""
+    private val uid = savedStateHandle.toRoute<ShopNav>().uid
 
-    private val _state = MutableStateFlow(UiState())
+    private val _state = MutableStateFlow(ShopState())
     val state get() = _state.asStateFlow()
 
     init {
         viewModelScope.launch {
-            _state.value = UiState(loading = true)
-            _state.value = UiState(loading = false, shop = repository.fetchShopById(uid))
+            _state.value = ShopState(loading = true)
+            val shop = repository.fetchShopById(uid)
+            if (shop != null) {
+                _state.value = ShopState(loading = false, shop = shop.toShopUi())
+            } else {
+                _state.value = ShopState(loading = false)
+            }
+
         }
     }
 
@@ -44,9 +51,4 @@ constructor(
         _state.update { it.copy(message = null) }
     }
 
-    data class UiState(
-        val loading: Boolean = false,
-        val shop: Shop? = null,
-        val message: String? = null
-    )
 }

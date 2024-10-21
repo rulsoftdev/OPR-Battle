@@ -1,7 +1,6 @@
-package dev.rulsoft.oprbattles.ui.screen.shop
+package dev.rulsoft.oprbattles.shop.presentation
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -22,7 +21,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import dev.rulsoft.oprbattles.R
-import dev.rulsoft.oprbattles.ui.composable.ClubDetail
 import dev.rulsoft.oprbattles.ui.composable.common.topBars.ShopDetail
 
 @Composable

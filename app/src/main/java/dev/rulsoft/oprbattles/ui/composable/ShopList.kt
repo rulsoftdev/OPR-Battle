@@ -12,14 +12,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
-import dev.rulsoft.oprbattles.data.model.Shop
-import dev.rulsoft.oprbattles.ui.screen.shop.ShopListViewModel
+import dev.rulsoft.oprbattles.shop.presentation.ShopListViewModel
+import dev.rulsoft.oprbattles.shop.presentation.models.ShopUi
 
 @Composable
 fun ShopList(
     modifier: Modifier = Modifier,
     shopListViewModel: ShopListViewModel = viewModel(),
-    onShopClick: (Shop) -> Unit
+    onShopClick: (ShopUi) -> Unit
 ) {
     val state by shopListViewModel.state.collectAsState()
 

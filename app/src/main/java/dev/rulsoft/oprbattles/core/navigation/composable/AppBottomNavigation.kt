@@ -5,25 +5,32 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavDestination
+import androidx.navigation.NavDestination.Companion.hasRoute
+import androidx.navigation.NavDestination.Companion.hierarchy
 import dev.rulsoft.oprbattles.core.navigation.NavItem
 
 @Composable
 fun AppBottomNavigation(
     bottomNavOptions: List<NavItem>,
-    currentRoute: String,
+    currentDestination: NavDestination?,
     onNavItemClick: (NavItem) -> Unit
 ) {
     OPRBattlesBottomNavigation {
         bottomNavOptions.forEach { item ->
-            val title = stringResource(id = item.title)
+            val title = stringResource(id = item.navCommand.title)
             NavigationBarItem(
-                selected = currentRoute.contains(item.navCommand.feature.route),
+                selected = currentDestination?.hierarchy?.any {
+                    it.hasRoute(item.navCommand.route::class)
+                } == true,
                 onClick = { onNavItemClick(item) },
                 icon = {
-                    Icon(
-                        imageVector = item.icon,
-                        contentDescription = title
-                    )
+                    if (item.icon != null) {
+                        Icon(
+                            imageVector = item.icon,
+                            contentDescription = title
+                        )
+                    }
                 },
                 label = { Text(text = title) }
             )

@@ -1,6 +1,9 @@
-package dev.rulsoft.oprbattles.data.model
+package dev.rulsoft.oprbattles.shop.data.networking.dto
 
-data class Shop(
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class ShopDto(
     val uid: String = "",
     val displayName: String = "",
     val email: String = "",

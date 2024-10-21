@@ -38,7 +38,7 @@ fun OPRBattlesApp(appState: OPRBattlesAppState = rememberOPRBattlesAppState()){
             },
             topBar = {
                 TopAppBar(
-                    title = { Text(stringResource(id = appState.title_screen)) },
+                    title = { Text(stringResource(id = appState.getTitleScreen())) },
                     navigationIcon = {
                         if (appState.showUpNavigation) {
                             AppBarIcon(
@@ -57,15 +57,15 @@ fun OPRBattlesApp(appState: OPRBattlesAppState = rememberOPRBattlesAppState()){
             bottomBar = {
                 if (appState.showBottomNavigation) {
                     AppBottomNavigation(
-                        bottomNavOptions = OPRBattlesAppState.BOTTOM_NAV_OPTIONS,
-                        currentRoute = appState.currentRoute,
+                        bottomNavOptions = appState.getBottomOptions,
+                        currentDestination = appState.currentDestination,
                         onNavItemClick = { appState.onNavItemClick(it) })
                 }
             },
             modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection)
         ){ padding ->
             Box(modifier = Modifier.padding(padding)) {
-                Navigation(appState.navController, appState.snackbarHostState)
+                Navigation(appState.navController)
             }
         }
     }
