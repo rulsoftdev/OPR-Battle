@@ -18,9 +18,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import dev.rulsoft.oprbattles.R
-import dev.rulsoft.oprbattles.navigations.Navigation
-import dev.rulsoft.oprbattles.navigations.composable.AppBarIcon
-import dev.rulsoft.oprbattles.navigations.composable.AppBottomNavigation
+import dev.rulsoft.oprbattles.core.navigation.Navigation
+import dev.rulsoft.oprbattles.core.navigation.composable.AppBarIcon
+import dev.rulsoft.oprbattles.core.navigation.composable.AppBottomNavigation
 import dev.rulsoft.oprbattles.ui.theme.OPRBattlesTheme
 
 private const val TAG =  "OPRBattlesApp"
@@ -38,7 +38,7 @@ fun OPRBattlesApp(appState: OPRBattlesAppState = rememberOPRBattlesAppState()){
             },
             topBar = {
                 TopAppBar(
-                    title = { Text(stringResource(id = appState.title_screen)) },
+                    title = { Text(stringResource(id = appState.getTitleScreen())) },
                     navigationIcon = {
                         if (appState.showUpNavigation) {
                             AppBarIcon(
@@ -57,19 +57,22 @@ fun OPRBattlesApp(appState: OPRBattlesAppState = rememberOPRBattlesAppState()){
             bottomBar = {
                 if (appState.showBottomNavigation) {
                     AppBottomNavigation(
-                        bottomNavOptions = OPRBattlesAppState.BOTTOM_NAV_OPTIONS,
-                        currentRoute = appState.currentRoute,
+                        bottomNavOptions = appState.getBottomOptions,
+                        currentDestination = appState.currentDestination,
                         onNavItemClick = { appState.onNavItemClick(it) })
                 }
             },
             modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection)
         ){ padding ->
             Box(modifier = Modifier.padding(padding)) {
-                Navigation(appState.navController, appState.snackbarHostState)
+                Navigation(appState.navController)
             }
         }
     }
+
 }
+
+
 
 @Composable
 fun OPRBattlesScreen(content: @Composable () -> Unit) {

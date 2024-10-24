@@ -29,15 +29,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import dev.rulsoft.oprbattles.R
-import dev.rulsoft.oprbattles.data.Club
-import java.text.SimpleDateFormat
-import java.util.Locale
+import dev.rulsoft.oprbattles.presentation.club.models.ClubUi
 
 @Composable
 fun ClubCard(
-        club: Club,
-        onClick: (Club) -> Unit,
-        modifier: Modifier = Modifier
+    club: ClubUi,
+    onClick: (ClubUi) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
     OutlinedCard(
@@ -136,14 +134,15 @@ fun ClubCard(
 @Preview(showBackground = true)
 @Composable
 fun ClubCardPreview() {
-    val club = Club(
-        uid = "club_20240910_0001",displayName = "RECS",
+    val club = ClubUi(
+        uid = "club_20240910_0001",
+        displayName = "RECS",
+        descripcion = "Club de roleo",
         email = "contact@clubaventura.com",
         photoURL = "https://picsum.photos/300/200?random=1",
+        backdrop = "https://picsum.photos/1920/1080?random=1",
         phone = "+1234567890",
         address = "123 Calle Aventura, Ciudad, País",
-        createdDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault()).parse("2024-09-01T10:00:00Z"),
-        lastAccess = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault()).parse("2024-09-10T08:00:00Z"),
         members = listOf("us_20230910_0001", "us_20230910_0002")
     )
     MaterialTheme {

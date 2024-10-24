@@ -16,12 +16,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import dev.rulsoft.oprbattles.data.Club
-import dev.rulsoft.oprbattles.data.Shop
-import dev.rulsoft.oprbattles.utils.Property
+import dev.rulsoft.oprbattles.core.presentation.util.Property
+import dev.rulsoft.oprbattles.presentation.shop.models.ShopUi
 
 @Composable
-fun ShopDetail(shop: Shop) {
+fun ShopDetail(shop: ShopUi) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()

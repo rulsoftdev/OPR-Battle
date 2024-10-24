@@ -12,15 +12,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
-import dev.rulsoft.oprbattles.data.Club
-import dev.rulsoft.oprbattles.ui.screen.club.ClubListViewModel
+import dev.rulsoft.oprbattles.presentation.club.ClubListViewModel
+import dev.rulsoft.oprbattles.presentation.club.models.ClubUi
 
 @Composable
 fun ClubList(
     modifier: Modifier = Modifier,
     clubListViewModel: ClubListViewModel = hiltViewModel(),
-    onClubClick: (Club) -> Unit
+    onClubClick: (ClubUi) -> Unit
 ) {
     val state by clubListViewModel.state.collectAsState()
 

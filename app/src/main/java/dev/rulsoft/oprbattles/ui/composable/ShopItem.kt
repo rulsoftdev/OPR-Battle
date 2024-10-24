@@ -28,11 +28,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import dev.rulsoft.oprbattles.R
-import dev.rulsoft.oprbattles.data.Shop
+import dev.rulsoft.oprbattles.presentation.shop.models.ShopUi
 
 @Composable
 fun ShopItem(
-    shop: Shop,
+    shop: ShopUi,
     onClick: (Any) -> Unit,
     modifier: Modifier = Modifier
 ) {
