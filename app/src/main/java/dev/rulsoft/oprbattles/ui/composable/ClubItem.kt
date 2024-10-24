@@ -29,9 +29,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import dev.rulsoft.oprbattles.R
-import dev.rulsoft.oprbattles.club.presentation.models.ClubUi
-import java.text.SimpleDateFormat
-import java.util.Locale
+import dev.rulsoft.oprbattles.presentation.club.models.ClubUi
 
 @Composable
 fun ClubCard(

@@ -17,7 +17,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import dev.rulsoft.oprbattles.core.presentation.util.Property
-import dev.rulsoft.oprbattles.shop.presentation.models.ShopUi
+import dev.rulsoft.oprbattles.presentation.shop.models.ShopUi
 
 @Composable
 fun ShopDetail(shop: ShopUi) {

@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import dev.rulsoft.oprbattles.club.presentation.models.ClubUi
+import dev.rulsoft.oprbattles.presentation.club.models.ClubUi
 import dev.rulsoft.oprbattles.core.presentation.util.Property
 
 @Composable

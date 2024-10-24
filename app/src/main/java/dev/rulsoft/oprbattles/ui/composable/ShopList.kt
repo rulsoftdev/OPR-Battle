@@ -12,8 +12,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
-import dev.rulsoft.oprbattles.shop.presentation.ShopListViewModel
-import dev.rulsoft.oprbattles.shop.presentation.models.ShopUi
+import dev.rulsoft.oprbattles.presentation.shop.ShopListViewModel
+import dev.rulsoft.oprbattles.presentation.shop.models.ShopUi
 
 @Composable
 fun ShopList(

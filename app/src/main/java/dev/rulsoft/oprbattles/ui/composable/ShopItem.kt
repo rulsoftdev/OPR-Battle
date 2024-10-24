@@ -28,7 +28,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import dev.rulsoft.oprbattles.R
-import dev.rulsoft.oprbattles.shop.presentation.models.ShopUi
+import dev.rulsoft.oprbattles.presentation.shop.models.ShopUi
 
 @Composable
 fun ShopItem(

@@ -5,7 +5,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import dev.rulsoft.oprbattles.club.data.networking.ClubDataSource
+import dev.rulsoft.oprbattles.data.club.networking.ClubDataSource
 import javax.inject.Singleton
 
 @Module

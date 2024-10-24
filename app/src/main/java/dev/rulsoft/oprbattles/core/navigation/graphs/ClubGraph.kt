@@ -4,8 +4,8 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
-import dev.rulsoft.oprbattles.club.presentation.ClubDetailScreen
-import dev.rulsoft.oprbattles.club.presentation.ClubListScreen
+import dev.rulsoft.oprbattles.presentation.club.ClubDetailScreen
+import dev.rulsoft.oprbattles.presentation.club.ClubListScreen
 import dev.rulsoft.oprbattles.core.navigation.ClubNav
 import dev.rulsoft.oprbattles.core.navigation.ClubsNav
 import kotlinx.serialization.Serializable
